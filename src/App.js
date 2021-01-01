@@ -9,14 +9,14 @@ class App extends Component{
 
     this.state = {
       monsters: [],
-      searchField: ''
+      searchField: '',
     };
 
   }
 
   // this is not predefined in the scope of functions in js nut the arrow function binds code without using any other command
-  handleChange = (e) => {
-    this.setState({ searchField: e.target.value })
+  OnSearchChange = (event) => {
+    this.setState({ searchField: event.target.value })
   }
 
   componentDidMount(){
@@ -28,7 +28,7 @@ class App extends Component{
   render(){
     // takes our the states and puts them inconstants with same name 
     // just like const monsters = this.state.monsters;
-    const { monsters, searchField } = this.state; 
+    const { monsters, searchField} = this.state; 
     const filteredMonsters = monsters.filter(monster => 
       monster.name.toLowerCase().includes(searchField.toLowerCase())
     );
@@ -37,7 +37,7 @@ class App extends Component{
             <h1>Monsters Rolodex</h1>
             <SearchBox 
               placeholder = 'search monsters'
-              handleChange = {this.handleChange}
+              OnSearchChange = {this.OnSearchChange}
             />
             <CardList monsters={filteredMonsters} />
           </div>
